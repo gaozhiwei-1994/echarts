@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
 
 import echarts from './lib/echarts';
-import world from './lib/world.json';
+import world from './lib/china.json';
 
 import './echartsDemo.css';
 
@@ -31,7 +31,8 @@ class EchartsDemo extends PureComponent {
     this.config();
   }
 
-  onResize = () => {
+  onResize = (a, b) => {
+    console.log(a, b);
     this.chart.resize();
   }
 
@@ -467,7 +468,7 @@ class EchartsDemo extends PureComponent {
       geo: {
           map: 'world',
           roam: true,
-          zoom: 5,
+          zoom: 1.2,
           center: [105.15,35.38],
           label: {
               emphasis: {
