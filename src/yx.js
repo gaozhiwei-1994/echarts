@@ -2,8 +2,9 @@ import React from 'react';
 import echarts from './lib/echarts';
 import ResizeDetector from 'react-resize-detector';
 import { Table } from 'antd';
+import yx from './static/yx.png';
 
-import './yx.css'
+import './yx.css';
 
 class Yx extends React.PureComponent {
 
@@ -33,7 +34,6 @@ onResize = (a: number, b: number) => {
 }
 
 topConfig = () => {
-  console.log(1234);
   const hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
         '7a', '8a', '9a','10a','11a',
         '12p', '1p', '2p', '3p', '4p', '5p',
@@ -55,7 +55,7 @@ days.forEach((day, idx) => {
     option.title.push({
         textBaseline: 'middle',
         textStyle: {
-          fontSize: 8
+          fontSize: 10
         },
         top: (idx + 0.5) * 100 / 7 + 12 + '%',
         text: day
@@ -133,7 +133,7 @@ this.bottomChart.setOption(option);
   },
   {
     key: '3',
-    name: '2#机组',
+    name: '3#机组',
     signNum: 0,
     abnormalNum: 0,
     faultNum: 0,
@@ -141,7 +141,7 @@ this.bottomChart.setOption(option);
   },
   {
     key: '4',
-    name: '2#机组',
+    name: '4#机组',
     signNum: 0,
     abnormalNum: 0,
     faultNum: 0,
@@ -229,7 +229,9 @@ const columns = [
     return (
         <div className="yx-wrapper">
           <div className="top">
-            <div className="left">left</div>
+            <div className="left">
+              <img src={yx} style={{ height: '100%', width: '100%' }} />
+            </div>
             <div className="right">
               <div className="r-top">
                 <div style={{ height: '100%' }} className="top-echarts" ref={this.topChartRef} />
@@ -247,9 +249,7 @@ const columns = [
               dataSource={data}
               pagination={false}
               showHeader={false}
-              // scroll={{
-              //
-              // }}
+              size="middle"
             />
           </div>
         </div>
