@@ -1,0 +1,26 @@
+.yx-wrapper {
+  height: 100vh;
+  padding: 10px;
+}
+.top {
+  height: 80%;
+}
+.bottom {
+  padding-top: 10px;
+  height: 20%;
+}
+.left {
+  float: left;
+  width: 50%;
+  height: 100%;
+  line-height: 25;
+  background-color: #E0E0E0;
+}
+.right {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+.r-top, .r-bottom {
+  height: 50%;
+}
