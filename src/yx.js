@@ -23,7 +23,7 @@ class Yx extends React.PureComponent {
 
   this.state = {
     display: '',
-    image: six,
+    image: yx,
   }
 }
 
@@ -204,19 +204,19 @@ const columns = [
    key: 'healthy',
   },
   {
-   title: '有功功率(MW)',
+   title: '发电机有功功率(MW)',
    align: 'center',
    dataIndex: 'mw',
    key: 'mw',
   },
   {
-   title: '无功功率(Mvar)',
+   title: '发电机无功功率(Mvar)',
    align: 'center',
    dataIndex: 'mv',
    key: 'mv',
   },
   {
-   title: '转速(rpm)',
+   title: '发电机转速(rpm)',
    align: 'center',
    dataIndex: 'rpm',
    key: 'rpm',
@@ -252,7 +252,7 @@ const columns = [
           </div>
           <div className="right">
             <div className="top">
-              <img src={image} style={{ width: '100%', height: '100%' }} />
+              <img src={image} style={{ height: '100%' }} />
             </div>
             <div className="bottom" style={{ overflowY: 'scroll', display }}>
               <Table
