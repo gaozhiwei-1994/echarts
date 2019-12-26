@@ -1,8 +1,14 @@
 import React from 'react';
 import echarts from './lib/echarts';
 import ResizeDetector from 'react-resize-detector';
-import { Table } from 'antd';
+import { Table, Menu } from 'antd';
 import yx from './static/yx.png';
+import one from './static/1.png';
+import two from './static/2.png';
+import three from './static/3.png';
+import four from './static/4.png';
+import five from './static/5.png';
+import six from './static/6.png';
 
 import './yx.css';
 
@@ -14,23 +20,73 @@ class Yx extends React.PureComponent {
   this.topChartRef = React.createRef();
   this.bottomChartRef = React.createRef();
   this.onResize = this.onResize.bind(this);
+
+  this.state = {
+    display: '',
+    image: six,
+  }
 }
 
 componentDidMount () {
-  this.topChart = echarts.init(this.topChartRef.current);
-  this.bottomChart = echarts.init(this.bottomChartRef.current);
-  this.topConfig();
-  this.bottomConfig();
+  // this.topChart = echarts.init(this.topChartRef.current);
+  // this.bottomChart = echarts.init(this.bottomChartRef.current);
+  // this.topConfig();
+  // this.bottomConfig();
 }
 
 componentDidUpdate() {
-  this.topConfig();
-  this.bottomConfig();
+  // this.topConfig();
+  // this.bottomConfig();
 }
 
 onResize = (a: number, b: number) => {
   this.topChart.resize();
   this.bottomChart.resize();
+}
+
+handleClickMenu = (a, b) => {
+  console.log(a, b);
+  const pngList = [
+    {
+      image: yx,
+      key: 'yx',
+    },
+    {
+      image: one,
+      key: '1',
+    },
+    {
+      image: two,
+      key: '2',
+    },
+    {
+      image: three,
+      key: '3',
+    },
+    {
+      image: four,
+      key: '4',
+    },
+    {
+      image: five,
+      key: '5',
+    },
+    {
+      image: six,
+      key: '6',
+    },
+  ];
+  const { key } = a;
+  if (key !== 'yx') {
+    pngList.forEach((p) => {
+      if (p.key === key) {
+        this.setState({ image: p.image });
+      }
+    })
+    this.setState({ display: 'none' });
+  } else {
+    this.setState({ display: '', image: yx });
+  }
 }
 
 topConfig = () => {
@@ -114,143 +170,98 @@ this.bottomChart.setOption(option);
 }
 
   render () {
+
+    const { display, image } = this.state;
+
     const data = [
-  {
-    key: '1',
-    name: '1#机组',
-    signNum: 0,
-    abnormalNum: 0,
-    faultNum: 0,
-    status: 1,
-  },
-  {
-    key: '2',
-    name: '2#机组',
-    signNum: 0,
-    abnormalNum: 0,
-    faultNum: 0,
-    status: 1,
-  },
-  {
-    key: '3',
-    name: '3#机组',
-    signNum: 0,
-    abnormalNum: 0,
-    faultNum: 0,
-    status: 1,
-  },
-  {
-    key: '4',
-    name: '4#机组',
-    signNum: 0,
-    abnormalNum: 0,
-    faultNum: 0,
-    status: 1,
-  },
-];
+      {
+        key: '1',
+        name: '白鹤滩机组',
+        time: '2019/12/26 10:35',
+        healthy: 98,
+        mw: 300,
+        mv: 210,
+        rpm: 428.6,
+      },
+    ];
 
 const columns = [
   {
-   title: '设备名称',
-   width: 400,
+   title: '机组名称',
    // align: 'center' as  'center',
    dataIndex: 'name',
    key: 'name',
-   show: 'hide'
   },
   {
-   title: '征兆',
-   width: 100,
+   title: '时间',
+   dataIndex: 'time',
+   key: 'time',
+  },
+  {
+   title: '健康度',
    align: 'center',
-   dataIndex: 'signNum',
-   key: 'signNum',
+   dataIndex: 'healthy',
+   key: 'healthy',
   },
   {
-   title: '异常',
-   width: 100,
+   title: '有功功率(MW)',
    align: 'center',
-   dataIndex: 'abnormalNum',
-   key: 'abnormalNum',
+   dataIndex: 'mw',
+   key: 'mw',
   },
   {
-   title: '故障',
-   width: 100,
+   title: '无功功率(Mvar)',
    align: 'center',
-   dataIndex: 'faultNum',
-   key: 'faultNum',
+   dataIndex: 'mv',
+   key: 'mv',
   },
   {
-   title: '状态',
-   width: 200,
-   // align: 'center' as  'center',
-   dataIndex: 'status',
-   key: 'status',
-   render: (status) => {
-     let color = '';
-     let display = '';
-     switch (status) {
-      case 1:
-          color = 'rgba(126,211,33,1)';
-          display='正常';
-           break;
-      case 2:
-          color = 'rgba(255,152,0,1)';
-          display='监视运行';
-           break;
-      case 3:
-          color = 'rgba(255,73,73,1)';
-          display='故障';
-           break;
-      case 0:
-          color = 'rgba(192,204,218,1)';
-          display='未诊断';
-           break;
-      default:
-          color = '';
-          display='';
-    }
-    const style = {
-      width: '8px',
-      height: '8px',
-      borderRadius: '50%',
-      display: 'inline-block',
-      marginRight: '5px',
-      background: color,
-    }
-     return (
-       <div>
-         <div style={style} />
-         <span>{display}</span>
-       </div>
-     )
-   }
+   title: '转速(rpm)',
+   align: 'center',
+   dataIndex: 'rpm',
+   key: 'rpm',
   }
 ];
+
+// <div className="right">
+//   <div className="r-top">
+//     <div style={{ height: '100%' }} className="top-echarts" ref={this.topChartRef} />
+//     <ResizeDetector handleWidth handleHeight skipOnMount onResize={this.onResize} />
+//   </div>
+//   <div className="r-bottom">
+//   <div style={{ height: '100%' }} className="bottom-echarts" ref={this.bottomChartRef} />
+//   <ResizeDetector handleWidth handleHeight skipOnMount onResize={this.onResize} />
+//   </div>
+// </div>
+
     return (
         <div className="yx-wrapper">
-          <div className="top">
-            <div className="left">
-              <img src={yx} style={{ height: '100%', width: '100%' }} />
-            </div>
-            <div className="right">
-              <div className="r-top">
-                <div style={{ height: '100%' }} className="top-echarts" ref={this.topChartRef} />
-                <ResizeDetector handleWidth handleHeight skipOnMount onResize={this.onResize} />
-              </div>
-              <div className="r-bottom">
-              <div style={{ height: '100%' }} className="bottom-echarts" ref={this.bottomChartRef} />
-              <ResizeDetector handleWidth handleHeight skipOnMount onResize={this.onResize} />
-              </div>
-            </div>
+          <div className="left-menu">
+            <Menu
+              onClick={this.handleClickMenu}
+              mode="inline"
+            >
+              <Menu.Item key="yx">机组监控</Menu.Item>
+              <Menu.Item key="1">发电机监控</Menu.Item>
+              <Menu.Item key="2">下导轴承轴瓦温度监控</Menu.Item>
+              <Menu.Item key="3">推力瓦RTD温度</Menu.Item>
+              <Menu.Item key="4">上导瓦RTD温度</Menu.Item>
+              <Menu.Item key="5">推力瓦油膜压力</Menu.Item>
+              <Menu.Item key="6">油膜厚度</Menu.Item>
+            </Menu>
           </div>
-          <div className="bottom" style={{ overflowY: 'scroll' }}>
-            <Table
-              columns={columns}
-              dataSource={data}
-              pagination={false}
-              showHeader={false}
-              size="middle"
-            />
+          <div className="right">
+            <div className="top">
+              <img src={image} style={{ width: '100%', height: '100%' }} />
+            </div>
+            <div className="bottom" style={{ overflowY: 'scroll', display }}>
+              <Table
+                columns={columns}
+                dataSource={data}
+                pagination={false}
+                size="middle"
+              />
+            </div>
           </div>
         </div>
     );
