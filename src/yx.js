@@ -247,7 +247,7 @@ const columns = [
               <Menu.Item key="3">推力瓦RTD温度</Menu.Item>
               <Menu.Item key="4">上导瓦RTD温度</Menu.Item>
               <Menu.Item key="5">推力瓦油膜压力</Menu.Item>
-              <Menu.Item key="6">油膜厚度</Menu.Item>
+              <Menu.Item key="6" disabled={true}>油膜厚度</Menu.Item>
             </Menu>
           </div>
           <div className="right">
