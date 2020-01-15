@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ResizeDetector from 'react-resize-detector';
 
 import echarts from './lib/echarts';
-import world from './lib/china.json';
+import world from './lib/world_new.json';
 
 import './echartsDemo.css';
 

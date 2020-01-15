@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import 'antd/dist/antd.css'
-// import EchartsDemo from './EchartsDemo';
+import EchartsDemo from './EchartsDemo';
 import Yx from './yx';
 
 import './App.css';
@@ -19,8 +19,8 @@ function App() {
           <Switch>
             {
               // <Route path="/" component={EchartsDemo} />
+              <Route path="/" component={Yx} />
             }
-            <Route path="/" component={Yx} />
           </Switch>
         </div>
       </Router>
